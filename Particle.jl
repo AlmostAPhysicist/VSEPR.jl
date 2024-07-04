@@ -34,5 +34,3 @@ mutable struct Particle
         new(Observable(position), Observable(velocity), Observable(acceleration), Observable(mass), Observable(charge), Observable(color), Observable(shape), Observable(size), Observable(transparency))
     end
 end
-
-#hello
