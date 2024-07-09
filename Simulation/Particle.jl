@@ -5,6 +5,7 @@ export Particle, UnitSphere
 
 include("./MyColors.jl")
 using GeometryBasics, .MyColors, Observables
+import StaticArrays.SVector
 
 const UnitSphere = normal_mesh(Tesselation(Sphere(Point3f(0), 1), 50))
 #You can also use Sphere() as a marker but I like this.
@@ -85,11 +86,15 @@ mutable struct Particle
     shape
     size
     alpha
+
+
+    #Adding functionality for Vectors
+    Particle(v::Vector{<:Real}) = Particle(SVector{length(v)}(v))
     #Observable{<:Point3{<:Real}} might add this as well
     function Particle(
-        position::Union{Point3{<:Real},Tuple{Real,Real,Real}}=Point3f(0),
-        velocity::Union{Point3{<:Real},Tuple{Real,Real,Real}}=Point3f(0),
-        acceleration::Union{Point3{<:Real},Tuple{Real,Real,Real}}=Point3f(0);
+        position::Union{Point3{<:Real},Tuple{Real,Real,Real}, SVector{3}}=Point3f(0),
+        velocity::Union{Point3{<:Real},Tuple{Real,Real,Real}, SVector{3}}=Point3f(0),
+        acceleration::Union{Point3{<:Real},Tuple{Real,Real,Real}, SVector{3}}=Point3f(0);
         mass::Real=1, charge::Real=1, color::String=rand(BASE_COLORS),
         shape=UnitSphere,
         size::Real=1, alpha::Real=1
@@ -101,9 +106,9 @@ mutable struct Particle
     end
 
     function Particle(
-        position::Union{Point2{<:Real},Tuple{Real,Real}}=Point2f(0),
-        velocity::Union{Point2{<:Real},Tuple{Real,Real}}=Point2f(0),
-        acceleration::Union{Point2{<:Real},Tuple{Real,Real}}=Point2f(0);
+        position::Union{Point2{<:Real},Tuple{Real,Real}, SVector{2}}=Point2f(0),
+        velocity::Union{Point2{<:Real},Tuple{Real,Real}, SVector{2}}=Point2f(0),
+        acceleration::Union{Point2{<:Real},Tuple{Real,Real}, SVector{2}}=Point2f(0);
         mass::Real=1, charge::Real=1, color::String=rand(BASE_COLORS),
         shape=GeometryBasics.Circle, size::Real=10, alpha::Real=1
     )
