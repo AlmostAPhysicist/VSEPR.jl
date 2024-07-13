@@ -1,3 +1,8 @@
+module PolarCoords
+
+export c2p, p2c
+
+
 #Coords Conversion
 """
     c2p(x::Real=0, y::Real=0, z::Real=0; convention=:math)
@@ -5,20 +10,20 @@
 Converts Cartesian-coordinates (x, y, z) to Polar coordinates (r, θ, ϕ)
 
 # Convention (takes a Keyword Argument)
-- The azimuthal angle (`θ` in `:math`; `ϕ` in `:physics`) is measured between the orthogonal projection of the radial line r onto the reference x-y-plane"
+
+- The azimuthal angle (`θ` in `:math`; `ϕ` in `:physics`) is measured between the orthogonal projection of the radial line r onto the reference x-y-plane
 
 - The polar angle (`ϕ` in `:math`; `θ` in `:physics`) is measured between the z-axis and the radial line r. 
 
-** I use the Geographical Convention (`convention=:math`) by default:
+## I use the Geographical Convention (`convention=:math`) by default:
 
 - (radial distance, azimuthal angle, polar angle) -> `(r, θ, ϕ)`
 
-
-** In order to use the ISO convention, set `convention=:physics` for:
+## In order to use the ISO convention, set `convention=:physics` for:
     
 - (radial distance, polar angle, azimuthal angle)  -> `(r, θ, ϕ)`
 
-
+>---
 
 # Example
 ```jldoctest
@@ -29,11 +34,15 @@ julia> c2p(1, 2, 1)
  1.1502619915109316
 ```
 
+>---
+
 Resources: 
 
 https://en.wikipedia.org/wiki/Spherical_coordinate_system
 
 https://youtube.com/watch?v=sT8JIn7Q_Fo
+
+>---
 """
 function c2p(x::Real=0, y::Real=0, z::Real=0; convention=:math)
 
@@ -67,12 +76,12 @@ Converts Polar coordinates (r, θ, ϕ) to Cartesian-coordinates (x, y, z)
 
 - The polar angle (`ϕ` in `:math`; `θ` in `:physics`) is measured between the z-axis and the radial line r. 
 
-** I use the Geographical Convention (`convention=:math`) by default:
+## I use the Geographical Convention (`convention=:math`) by default:
 
 - (radial distance, azimuthal angle, polar angle) -> `(r, θ, ϕ)`
 
 
-** In order to use the ISO convention, set `convention=:physics` for:
+## In order to use the ISO convention, set `convention=:physics` for:
     
 - (radial distance, polar angle, azimuthal angle)  -> `(r, θ, ϕ)`
 
@@ -89,4 +98,9 @@ function p2c(r::Real=0, θ::Real=0, ϕ::Real=pi/2; convention=:math)
 end
 function p2c(point::Union{Tuple, AbstractVector}; convention=:math)
     p2c(point..., convention=convention)
+end
+
+
+
+
 end

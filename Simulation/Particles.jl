@@ -22,69 +22,6 @@ end
 #mesh() would plot a mesh in Makie. GeometryBasics.mesh creates some non-colorable version of the object. normal_mesh is the way to go then.
 
 """
->    `Particle`
-
-a custom `mutable struct` to encorporate properties of a particle like it's Kinetics and Intrinsic mass, charge, shape, etc.
-    
-All properties that affect render are `Observables` by default
-
----
-
-# Fields
-
-    #Kinetics
-  -  `pos` :: A `Point2` or `Point3` or `Tuple`
-  -  `vel` :: A `Point2` or `Point3` or `Tuple`
-  -  `acc` :: A `Point2` or `Point3` or `Tuple`
-
-    #Intrinsic Properties
-  -  `mass` :: `Real`
-  -  `charge` :: `Real`
-  -  `color` :: `String` (Hex value)
-  -  `shape` :: `Circle`/`Sphere` by default
-  -  `size` :: `Real`
-  -  `alpha` :: `Real` (input between 0 and 1)
-
----
-
-# Example Usage:
-```julia
-julia> using GLMakie
-julia> s = Scene(camera=cam2d!)
-julia> p = Particle()
-
-> Particle(Observable(Float32[0.0, 0.0]), Float32[0.0, 0.0], Float32[0.0, 0.0], 1, 1, Observable("#f2baaf"), Observable(Circle), Observable(10), Observable(1))
-
-julia> scatter!(s, p.pos, marker=p.shape, color=p.color, markersize=p.size)
-
-> Scatter{Tuple{Vector{Point{2, Float32}}}}
-
-#This creates a particle at origin but since by default, 2d scenes have markerspace=:pixel, not scalable
-
-julia> scatter!(s, p.pos, markersize=to_value(p.size).*(0.045,0.060), markerspace=:data) #For scalable particle render
-
-> Scatter{Tuple{Vector{Point{2, Float32}}}}
-
-#Note how markersize can be set as a tuple. This was done here to nullify the screen ratio since now markerspace deals with that.
-
-#3D
-julia> s = Scene(camera=cam3d!)
-julia> p = Particle(Point3f(0,1,0), color=RED)
-
-> Particle(Observable(Float32[0.0, 1.0, 0.0]), Float32[0.0, 0.0, 0.0], Float32[0.0, 0.0, 0.0], 1, 1, Observable("#f03e50"), VALUE_OF_UNITSPHERE_NORMAL_MESH, Observable(5), Observable(1))
-
-julia> meshscatter!(s, p.pos, marker=p.shape, color=p.color)
-
-> MeshScatter{Tuple{Vector{Point{3, Float32}}}}
-
-
-```
-
-===
-
-"""
-
-"""
    Particle2D
 
 `struct Particle2D{T<:Real} <: Particle`
@@ -324,7 +261,7 @@ struct Particle3D{T<:Real} <: Particle
     end
         
     function Particle3D(T::Type=Float64)
-        new{T}(Observable(Point{3,T}(0)), Observable(Point{3,T}(0)), Observable(Point{3,T}(0)), T(1), T(1), Observable(RED), Observable(GeometryBasics.Circle), Observable(T(1)), Observable(T(1)))
+        new{T}(Observable(Point{3,T}(0)), Observable(Point{3,T}(0)), Observable(Point{3,T}(0)), T(1), T(1), Observable(RED), Observable(UnitSphere), Observable(T(1)), Observable(T(1)))
     end
 end
 
@@ -344,6 +281,19 @@ end
 A convenience function to create either a `Particle2D` or `Particle3D` based on the provided arguments.
 
 if arg `pos` or kwargs `vel` and `acc` are 3 Dimentional, creates a `Particle3D`, else creates `Particle2D` unless there is an error
+
+>---
+
+# Fields
+    - pos::Observable{Point{T}}
+    - vel::Observable{Point{T}}
+    - acc::Observable{Point{T}}
+    - mass::T
+    - charge::T
+    - color::Observable{String}
+    - shape::Observable
+    - size::Observable{T}
+    - alpha::Observable{T}
 
 >---
 
