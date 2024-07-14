@@ -98,11 +98,55 @@ function update_all_particles!(
 end
 
 
-function main(Nparticles::Int64=3, iterations::Int64=100, force_factor::Real=1, show_evolution::Bool=true, min_time::Real=10, radius::Real=1)
-    particles = [Particle3D(i, size=0.3/sqrt(Nparticles), color=OCEAN_BLUE) for i in generate_points_on_sphere(Nparticles)]
+
+#Creating the Scene and Simulation 
+
+import REPL.Terminals
+function overprint(terminal::Terminals.TTYTerminal, content...; up::Int64=0)
+    if up > 0
+        Terminals.cmove_line_up(terminal, up)
+    end
+    Terminals.clear_line(terminal)
+    print(content...)
+    if up > 0
+        Terminals.cmove_line_down(terminal, up)
+        yield()
+    end
+end
+
+calc_sleep_time(Nparticles::Int64, time::Real, iterations::Int64) = (time/iterations)*(1-(1/(time+1)))*((1-(1/(Nparticles+1))))
+
+function evolve_space!(
+    particles::Vector{Particle3D{Float64}};
+    iterations::Int64=1000,
+    force_factor::Real=10^(-1-log10(length(particles))), 
+    radius::Real=1,
+    show_evolution::Bool=true,
+    time::Real=10
+    )
+    terminal = Terminals.TTYTerminal("", stdin, stdout, stderr)
+    Nparticles = length(particles)
+    for iteration in 1:iterations
+        update_all_particles!(particles, force_factor, radius)
+
+        if show_evolution == true
+            #if sleep function is used for all iterations, 15 seconds is the minimum time taken for 1000 iterations.
+            #sqrt(additional time)/sqrt(total iterations) ≈ 0.15
+            overprint(terminal, "Iteration : $(iteration)")
+            sleep(calc_sleep_time(Nparticles, time, iterations))
+        end
+
+    end
+
+    println("\nEvolution Complete")
+    return nothing
+end
+
+function main(Nparticles::Int64=3, central_atom_color=OFFWHITE, ligand_color=LIGHT_GREEN; radius::Real=1)
+    particles = [Particle3D(i, size=0.3/cbrt(Nparticles), color=ligand_color) for i in generate_points_on_sphere(Nparticles)]
     s = Scene(camera=cam3d!, size=(600,600), backgroundcolor=BLACK)
     display(s)
-    central_atom = Particle3D(alpha=0.9)
+    central_atom = Particle3D(alpha=0.9, size=radius, color=central_atom_color)
     meshscatter!(s, central_atom.pos, marker=central_atom.shape, markersize=central_atom.size, color=central_atom.color, alpha=central_atom.alpha, transparency=true)
     for p in particles
         meshscatter!(s, p.pos, marker=p.shape, markersize=p.size, color=p.color)
@@ -112,32 +156,12 @@ function main(Nparticles::Int64=3, iterations::Int64=100, force_factor::Real=1, 
 end
 
 
-function evolve_space!(
-    particles::Vector{Particle3D{Float64}},
-    iterations::Int64=1000,
-    force_factor::Real=0.075, 
-    radius::Real=1;
-    show_evolution::Bool=true,
-    time::Real=10
-    )
-    for iteration in 1:iterations
-        update_all_particles!(particles, force_factor, radius)
 
-        if show_evolution == true
-            # println("Iteration : $(iteration)")
 
-            # yield()
-            sleep(1/sqrt(length(particles))*time/iterations)
-        end
 
-    end
-
-    println("Evolution Complete")
-    return nothing
-end
 
 
 
 particles = main(5)
-evolve_space!(particles, time=10)
+evolve_space!(particles)
 
