@@ -13,10 +13,27 @@ The particles representing atoms or electron pairs are positioned on a sphere an
 
 ## Demo
 
-<video width="320" height="240" controls>
-  <source src="media/VSEPR_simulation_sample.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+![](VSEPR_simulation_sample.mp4")
+
+<p align="center">
+  <img src="media/VSEPR-demo.gif" alt="VSEPR Simulation" width="700"/>
+</p>
+
+<details>
+  <summary>View More Demo Images</summary>
+<p align="center">
+  <img src="SimData/VSEPR_6_particles_closeup.png" alt="Logo" width="500"/>
+</p>
+<p align="center">
+  <img src="SimData/VSEPR_1000_particles_closeup.png" alt="Logo" width="500"/>
+</p>
+<p align="center">
+  <img src="SimData/VSEPR_10000_particles.png" alt="Logo" width="500"/>
+</p>
+<p align="center">
+  <img src="SimData/VSEPR_5_particles_closeup.png" alt="Logo" width="500"/>
+</p>
+</details>
 
 ## Installation
 
