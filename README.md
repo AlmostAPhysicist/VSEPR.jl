@@ -22,7 +22,7 @@ The particles representing atoms or electron pairs are positioned on a sphere an
 <details>
   <summary>View More Demo Images</summary>
 <p align="center">
-  <img src="SimData/VSEPR_6_particles_closeup.png" alt="Logo" width="500"/>
+  <img src="SimData/VSEPR_6_particles.png" alt="Logo" width="500"/>
 </p>
 <p align="center">
   <img src="SimData/VSEPR_1000_particles_closeup.png" alt="Logo" width="500"/>
@@ -31,7 +31,7 @@ The particles representing atoms or electron pairs are positioned on a sphere an
   <img src="SimData/VSEPR_10000_particles.png" alt="Logo" width="500"/>
 </p>
 <p align="center">
-  <img src="SimData/VSEPR_5_particles_closeup.png" alt="Logo" width="500"/>
+  <img src="SimData/VSEPR_5_particles.png" alt="Logo" width="500"/>
 </p>
 </details>
 
