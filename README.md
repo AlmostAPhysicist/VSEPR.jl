@@ -116,7 +116,7 @@ evolve_space!(particles, time=15)
 ```
 </details>
 
-To run the simulation, use the `main` and `evolve_space!` functions:
+To run the simulation, use the `main` and `evolve_space!` functions in `Simulation/main.jl`:
 
 ```julia
 s, particles = main(5)
