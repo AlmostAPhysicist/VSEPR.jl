@@ -141,6 +141,6 @@ This project uses [GLMakie](https://github.com/JuliaPlots/GLMakie.jl) for visual
 Danisch & Krumbiegel, (2021). Makie.jl: Flexible high-performance data visualization for Julia.
 Journal of Open Source Software, 6(65), 3349, https://doi.org/10.21105/joss.03349
 
-Regardless of the need to mention, Julia is an incredible language to work with.
-[Julia](https://github.com/JuliaLang/julia)
+Regardless of the need to mention, [Julia](https://github.com/JuliaLang/julia is an incredible language to work with.
+
 
