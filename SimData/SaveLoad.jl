@@ -4,7 +4,7 @@ module SaveLoad
 
     export save_content, load_content
 
-    function save_particles(filepath::String, content)
+    function save_content(filepath::String, content)
         open(filepath, "w") do io
             serialize(io, content)
         end
