@@ -34,15 +34,15 @@ The particles representing atoms or electron pairs are positioned on a sphere an
   <img src="SimData/VSEPR_5_particles.png" alt="Logo" width="500"/>
 </p>
 
-  all the particle data in in the Folder `SimData`
+  all the particle data in the Folder `VSEPR.jl/SimData/`
 </details>
 
 ## Installation
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/AlmostAPhysicist/VSEPR.git
-    cd VSEPR
+    git clone https://github.com/AlmostAPhysicist/VSEPR.jl.git
+    cd VSEPR.jl
     ```
 
 2. Install the required Julia packages:
@@ -129,7 +129,7 @@ You can pan around, zoom, rotate, etc with the Makie window using the Mouse or k
 
 ### Saving the Simulation
 
-To save the simulation, use the `save_content` and `load_content` functions in `VSEPR/SimData/SaveLoad.jl`
+To save the simulation, use the `save_content` and `load_content` functions in `VSEPR.jl/SimData/SaveLoad.jl`
 
 ```julia
 include("SimData/SaveLoad.jl")
