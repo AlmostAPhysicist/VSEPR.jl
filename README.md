@@ -33,6 +33,8 @@ The particles representing atoms or electron pairs are positioned on a sphere an
 <p align="center">
   <img src="SimData/VSEPR_5_particles.png" alt="Logo" width="500"/>
 </p>
+
+  all the particle data in in the Folder `SimData`
 </details>
 
 ## Installation
@@ -178,8 +180,3 @@ Journal of Open Source Software, 6(65), 3349, https://doi.org/10.21105/joss.0334
 
 Regardless of the need to mention, [Julia](https://github.com/JuliaLang/julia) is an incredible language to work with.
 ```
-
-### Notes:
-- Replace `path_to_your_logo.png` and `path_to_your_video.mp4` with the actual paths to your logo image and video file.
-- This structure includes the collapsible sections for detailed explanations, making the README cleaner and more navigable.
-- For the repository name, if your project is a Julia package, it’s common to use the `.jl` suffix (e.g., `VSEPR.jl`). However, if it's more of a standalone project, `VSEPR` without the suffix is also fine.
