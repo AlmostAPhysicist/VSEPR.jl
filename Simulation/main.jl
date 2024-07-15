@@ -146,7 +146,7 @@ function evolve_space!(
 end
 
 function main(Nparticles::Int64=3, central_atom_color::String=OFFWHITE, ligand_color::String=LIGHT_GREEN; radius::Real=1)
-    particles = [Particle3D(i, size=0.3 / cbrt(Nparticles), color=ligand_color) for i in generate_points_on_sphere(Nparticles)]
+    particles = [Particle3D(i, size=0.3 / cbrt(Nparticles), color=ligand_color) for i in generate_points_on_sphere(Nparticles, radius)]
     s = Scene(camera=cam3d!, size=(600, 600), backgroundcolor=BLACK)
     display(s)
     central_atom = Particle3D(alpha=0.9, size=radius, color=central_atom_color)
