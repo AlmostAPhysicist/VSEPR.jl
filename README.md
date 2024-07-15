@@ -1,9 +1,39 @@
 
-# VSEPR Simulation
+
+
+<p align="center">
+  <img src="media/VSEPR-Logo.png" alt="Logo" width="200"/>
+</p>
+
+<h1 align="center">VSEPR</h1>
 
 This project is a Valence Shell Electron Pair Repulsion (VSEPR) model visualisation in 3D space using `GLMakie` in `Julia`. 
 
-The particles representing atoms or electron pairs are positioned on a sphere and then repelled from each other to achieve to eventually evolve into an equilibrium configuration.
+The particles representing atoms or electron pairs are positioned on a sphere and then repelled from each other to eventually evolve into an equilibrium configuration.
+
+## Demo
+
+![](VSEPR_simulation_sample.mp4")
+
+<p align="center">
+  <img src="media/VSEPR-demo.gif" alt="VSEPR Simulation" width="700"/>
+</p>
+
+<details>
+  <summary>View More Demo Images</summary>
+<p align="center">
+  <img src="SimData/VSEPR_6_particles_closeup.png" alt="Logo" width="500"/>
+</p>
+<p align="center">
+  <img src="SimData/VSEPR_1000_particles_closeup.png" alt="Logo" width="500"/>
+</p>
+<p align="center">
+  <img src="SimData/VSEPR_10000_particles.png" alt="Logo" width="500"/>
+</p>
+<p align="center">
+  <img src="SimData/VSEPR_5_particles_closeup.png" alt="Logo" width="500"/>
+</p>
+</details>
 
 ## Installation
 
@@ -22,11 +52,10 @@ The particles representing atoms or electron pairs are positioned on a sphere an
 
 ## Usage
 
-
-
 ### Running the Simulation
 
-#### `main`
+<details>
+  <summary>main</summary>
 
 The `main` function initializes the simulation with a given number of particles and parameters.
 
@@ -53,8 +82,10 @@ function main(
 ```julia
 s, particles = main(5)
 ```
+</details>
 
-#### `evolve_space!`
+<details>
+  <summary>evolve_space!</summary>
 
 The `evolve_space!` function evolves the simulation over a number of iterations.
 
@@ -81,6 +112,7 @@ function evolve_space!(
 ```julia
 evolve_space!(particles, time=15)
 ```
+</details>
 
 To run the simulation, use the `main` and `evolve_space!` functions:
 
@@ -107,11 +139,13 @@ save_content("MyFilePath.json", particles)
 restored_particles = load_content("MyFilePath.json")
 ```
 
-### Particle Structs
+#### Particle Structs
 
 The simulation uses a custom `Particle3D` struct to represent particles in 3D space. This struct includes observable properties for position, velocity, acceleration, mass, charge, color, shape, size, and transparency.
 
-#### `Particle3D`
+<details>
+  <summary>Particle3D</summary>
+
 ```julia
 struct Particle3D{T<:Real} <: Particle
     pos::Observable{Point{3,T}}
@@ -125,6 +159,7 @@ struct Particle3D{T<:Real} <: Particle
     alpha::Observable{T}
 end
 ```
+</details>
 
 ## License
 
@@ -141,6 +176,10 @@ This project uses [GLMakie](https://github.com/JuliaPlots/GLMakie.jl) for visual
 Danisch & Krumbiegel, (2021). Makie.jl: Flexible high-performance data visualization for Julia.
 Journal of Open Source Software, 6(65), 3349, https://doi.org/10.21105/joss.03349
 
-Regardless of the need to mention, Julia is an incredible language to work with.
-[Julia](https://github.com/JuliaLang/julia)
+Regardless of the need to mention, [Julia](https://github.com/JuliaLang/julia) is an incredible language to work with.
+```
 
+### Notes:
+- Replace `path_to_your_logo.png` and `path_to_your_video.mp4` with the actual paths to your logo image and video file.
+- This structure includes the collapsible sections for detailed explanations, making the README cleaner and more navigable.
+- For the repository name, if your project is a Julia package, it’s common to use the `.jl` suffix (e.g., `VSEPR.jl`). However, if it's more of a standalone project, `VSEPR` without the suffix is also fine.
