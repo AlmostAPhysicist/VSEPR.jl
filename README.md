@@ -7,6 +7,9 @@
 
 <h1 align="center">VSEPR</h1>
 
+<h4 align="center"> Don't settle for static molecules</h4>
+<h3 align="center"> Watch them evolve and come to life as you interact!</h3>
+
 This project is a Valence Shell Electron Pair Repulsion (VSEPR) model visualisation in 3D space using `GLMakie` in `Julia`. 
 
 The particles representing atoms or electron pairs are positioned on a sphere and then repelled from each other to eventually evolve into an equilibrium configuration.
