@@ -145,7 +145,7 @@ function evolve_space!(
     return nothing
 end
 
-function main(Nparticles::Int64=3, central_atom_color::String=OFFWHITE, ligand_color::String=LIGHT_GREEN; radius::Real=1)
+function main(Nparticles::Int64=3, central_atom_color::String=OCEAN_BLUE, ligand_color::String=OFFWHITE; radius::Real=1)
     particles = [Particle3D(i, size=0.3 / cbrt(Nparticles), color=ligand_color) for i in generate_points_on_sphere(Nparticles, radius)]
     s = Scene(camera=cam3d!, size=(600, 600), backgroundcolor=BLACK)
     display(s)
@@ -164,18 +164,18 @@ end
 
 
 
-# s, particles = main(5)
+# s, particles = main(50)
 # evolve_space!(particles)
 
 # include("../SimData/SaveLoad.jl")
 # using .SaveLoad
-# record(s, "VSEPR_simulaiton_sample.mp4"; framerate=60) do io
-#     for i in 1:60 #1 second of wait time in start
+# record(s, "SimData/VSEPR_simulaiton_sample.mp4"; framerate=40) do io
+#     for i in 1:30 #1 second of wait time in start
 #         recordframe!(io)
 #         sleep(1 / 60)
 #     end
 
-#     evolve_task = @async evolve_space!(particles, iterations=500, force_factor=0.003, time=30)
+#     evolve_task = @async evolve_space!(particles, iterations=600, force_factor=0.0002, time=10)
 #     while !istaskdone(evolve_task)
 #         recordframe!(io)
 #     end
