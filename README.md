@@ -22,6 +22,10 @@ The particles representing atoms or electron pairs are positioned on a sphere an
   <img src="media/VSEPR-demo.gif" alt="VSEPR Simulation" width="700"/>
 </p>
 
+<p align="center">
+  <img src="SimData/Tetrahedron.png" alt="Tetrahedron Evolved Structure" width="700"/>
+</p>
+
 <details>
   <summary>View More Demo Images</summary>
 <p align="center">
